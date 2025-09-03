@@ -1,0 +1,49 @@
+Got it — here's a compact, single-file HTML "shortcode" you can drop into any page. It lets a user enter a glucose value, pick the test type (Fasting, Random, or A1c), switch units (mg/dL ↔ mmol/L), and shows a quick interpretation. Includes a tiny bit of styling and JavaScript — copy-paste and use.
+
+<!-- Diabetes Shortcode Widget (single-file) -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Glucose Quick-Check</title>
+<style>
+  .dg-widget{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;max-width:380px;border:1px solid #e3e3e3;padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.03)}
+  .dg-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  label{font-size:13px;color:#333;min-width:80px}
+  input[type="number"]{flex:1;padding:8px;border:1px solid #ddd;border-radius:6px}
+  select{padding:8px;border-radius:6px;border:1px solid #ddd}
+  button{padding:8px 12px;border-radius:8px;border:0;background:#2563eb;color:#fff;cursor:pointer}
+  .result{padding:10px;border-radius:8px;background:#f7f9ff;border:1px solid #e2e8ff;margin-top:10px}
+  .ok{color: #065f46}
+  .warn{color:#92400e}
+  .bad{color:#7f1d1d}
+  .small{font-size:12px;color:#666;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="dg-widget" role="region" aria-labelledby="dg-title">
+  <h3 id="dg-title" style="margin:0 0 10px 0;font-size:16px">Glucose Quick-Check</h3>
+
+  <div class="dg-row">
+    <label for="value">Value</label>
+    <input id="value" type="number" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 95" />
+  </div>
+
+  <div class="dg-row">
+    <label for="test">Test</label>
+    <select id="test" aria-label="Test type">
+      <option value="fasting">Fasting (blood)</option>
+      <option value="random">Random / Casual</option>
+      <option value="a1c">A1c (%)</option>
+    </select>
+  </div>
+
+  <div class="dg-row">
+    <label for="unit">Units</label>
+    <select id="unit" aria-label="Units">
+      <option value="mgdl">mg/dL</option>
+      <option value="mmoll">mmol/L</option>
+    </select>
+
